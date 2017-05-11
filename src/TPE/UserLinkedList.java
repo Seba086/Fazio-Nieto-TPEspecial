@@ -1,5 +1,6 @@
 package TPE;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -8,13 +9,24 @@ public class UserLinkedList implements IUserList {
 	protected User last;
 	protected int size = 0;
 	protected boolean insertarInicio = false; 
+	protected CSVReader csvr = new CSVReader();
+	protected CSVWritter csvw = new CSVWritter();
+	protected final String resultSearch = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/salidabusqueda.csv";
+	protected final String resultUploading = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/salidaalta.csv";
+	protected String pathCargaUsuarios = "";
 	
-	public UserLinkedList(boolean insertarAlInicio){
+	public UserLinkedList(boolean insertarAlInicio,String pathCargaUsuarios){
+		this.pathCargaUsuarios = pathCargaUsuarios;
 		this.insertarInicio = insertarAlInicio;
+		cargarUsuarios();
 	}
 
 	public void insertUser(User user) {
-		// TODO Auto-generated method stub
+		if(this.insertarInicio){
+			insertarUsuarioInicio(user);
+		}else{
+			insertarUsuarioFinal(user);
+		}
 
 	};
 	private void insertarUsuarioInicio(User user){
@@ -34,10 +46,11 @@ public class UserLinkedList implements IUserList {
 	}
 	
 	@Override
-	public void addUsers(ArrayList<User> users) {
-		// TODO Auto-generated method stub
+	public void cargarUsuarios() {
+		ArrayList<User> usuarios = new ArrayList<User>();
+		usuarios = csvr.reader(pathCargaUsuarios);
 		Date init = new Date();
-		for (User user : users) {
+		for (User user : usuarios) {
 			insertUser(user);
 			Date end = new Date();
 			long result = end.getTime() - init.getTime();
@@ -49,27 +62,38 @@ public class UserLinkedList implements IUserList {
 	}
 
 	@Override
-	public void searchUsers(ArrayList<User> usersQuery) {
-		for (User user : usersQuery) {
-			user.setExists(false);
-			boolean found = false;
-			User userTemp = first;
-			Date init = new Date();
-			int i = 0;
-			while (!found && (i < size)) {
-				if (userTemp.getUserId().equals(user.getUserId())) {
-					found = true;
-					user.setExists(true);
-				} else {
-					if (userTemp.hasNext()) {
-						userTemp = userTemp.getNext();
+	public void searchUsers(String pathSearch) {
+		ArrayList<User> usersQuery = new ArrayList<User>();
+		usersQuery = csvr.reader(pathSearch);
+		try {
+			for (User user : usersQuery) {
+				user.setExists(false);
+				boolean found = false;
+				User userTemp = first;
+				Date init = new Date();
+				int i = 0;
+				while (!found && (i < size)) {
+					if (userTemp.getUserId().equals(user.getUserId())) {
+						found = true;
+						user.setExists(true);
+					} else {
+						if (userTemp.hasNext()) {
+							userTemp = userTemp.getNext();
+						}
 					}
+					i++;
 				}
-				i++;
+				Date end = new Date();
+				long result = end.getTime() - init.getTime();
+				saveResult(user, size, result);
 			}
-			Date end = new Date();
-			long result = end.getTime() - init.getTime();
-			saveResult(user, size, result);
+			System.out.println("write");
+			csvw.createWritter(resultSearch);
+				csvw.write(usersQuery);
+			
+		} catch (NullPointerException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

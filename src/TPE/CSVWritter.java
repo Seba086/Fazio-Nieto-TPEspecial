@@ -28,7 +28,8 @@ public class CSVWritter {
 		String k500 = "500k";
 		String m1 = "1m";
 		String m3 = "3m";
-		bw.write("id_usuario;encontrado;tA500k;tA1m;tA3m;tF500k;tF1m;tF3m;tL500k;tL1m;tL3m \n");
+		bw.write("id_usuario;encontrado;tA500k;tA1m;tA3m;tF500k;tF1m;tF3m;tL500k;tL1m;tL3m");
+		bw.newLine();
 		for (User user : users) {
 			try {
 				String timeOne = user.getTimeArray(k500)+ ";" + user.getTimeArray(m1)+ ";" + user.getTimeArray(m3);

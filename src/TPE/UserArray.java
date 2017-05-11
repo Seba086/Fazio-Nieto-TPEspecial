@@ -1,20 +1,32 @@
 package TPE;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class UserArray implements IUserList{
 	private User[] users = new User[10000]; 
+	protected CSVReader csvr = new CSVReader();
+	protected CSVWritter csvw = new CSVWritter();
+	protected final String resultSearch = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/salidabusqueda.csv";
+	protected final String resultUploading = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/salidaalta.csv";
+	protected String pathCargaUsuarios = "";
 	
+	public UserArray(String pathCargaUsuarios){
+		this.pathCargaUsuarios = pathCargaUsuarios;
+		cargarUsuarios();
+	}
 
 
 	@Override
-	public void addUsers(ArrayList<User> users) {
-		for (int i = 0; i < users.size(); i++) {
+	public void cargarUsuarios() {
+		ArrayList<User> usuarios = new ArrayList<User>();
+		usuarios = csvr.reader(pathCargaUsuarios);
+		for (int i = 0; i < usuarios.size(); i++) {
 			if(i >= this.users.length){
 				duplicateArrayLength();
 			}
-			this.users[i] = users.get(i);
+			this.users[i] = usuarios.get(i);
 		}
 		
 	}
@@ -28,7 +40,9 @@ public class UserArray implements IUserList{
 	}
 
 	@Override
-	public void searchUsers(ArrayList<User> usersQuery) {
+	public void searchUsers(String pathSearch) {
+		ArrayList<User> usersQuery = new ArrayList<User>();
+		usersQuery = csvr.reader(pathSearch );
 		for (User user : usersQuery) {
 			user.setExists(false);
 			boolean found = false;
@@ -54,6 +68,13 @@ public class UserArray implements IUserList{
 				size = 3000000;
 			}
 			saveResult(user, size, result);
+		}
+		csvw.createWritter(resultSearch);
+		try {
+			csvw.write(usersQuery);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

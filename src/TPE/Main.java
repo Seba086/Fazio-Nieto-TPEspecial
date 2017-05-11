@@ -14,7 +14,12 @@ public class Main {
 
 
 	public static void main(String[] args) throws IOException {
-
+		//UserLinkedList listaPrincipio = new UserLinkedList(true, path500k);
+		//listaPrincipio.searchUsers(pathSearch);
+		UserArray listaArray = new UserArray(path500k);
+		listaArray.searchUsers(pathSearch);
+		
+/*
 		ArrayList<User> load500k = new ArrayList<User>();
 		ArrayList<User> load1m = new ArrayList<User>();
 		ArrayList<User> load3m = new ArrayList<User>();
@@ -50,7 +55,7 @@ public class Main {
 		ua.searchUsers(searchUsers);
 		System.out.println("search ua");
 		// 1m
-		/*ullf = new UserLinkedListFirst();
+		ullf = new UserLinkedListFirst();
 		ullf.addUsers(load1m);
 		ulll = new UserLinkedListLast();
 		ulll.addUsers(load1m);
@@ -68,21 +73,21 @@ public class Main {
 		ua.addUsers(load3m);
 		ullf.searchUsers(searchUsers);
 		ulll.searchUsers(searchUsers);
-		ua.searchUsers(searchUsers);*/
+		ua.searchUsers(searchUsers);
 		CSVWritter csvw = new CSVWritter();
 		csvw.createWritter(resultSearch);
 		csvw.write(searchUsers);
-		System.out.println("termino");
+		System.out.println("termino");*/
 	}
 
-	private static void loadUsers(UserArray ua, UserLinkedList ulll, UserLinkedList ullf,
+	/*private static void loadUsers(UserArray ua, UserLinkedList ulll, UserLinkedList ullf,
 			ArrayList<User> newUsers) throws IOException {
 		readUsers(pathNew, newUsers);
 		ullf.addUsers(newUsers);
 		ulll.addUsers(newUsers);
 		ua.addUsers(newUsers);
 		saveResult(resultUploading, newUsers);
-	}
+	}*/
 
 	private static void searchUsers() {
 
