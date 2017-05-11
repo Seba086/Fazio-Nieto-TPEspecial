@@ -1,17 +1,19 @@
 package TPE;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main {
-	final static String path500k = "C:/Users/USER/Documents/Universidad/Tudai/2017/Programacion3/Boulanger-TPEspecial/datasets/dataset_500000.csv";
-	final static String path1m = "C:/Users/USER/Documents/Universidad/Tudai/2017/Programacion3/Boulanger-TPEspecial/datasets/dataset_1000000.csv";
-	final static String path3m = "C:/Users/USER/Documents/Universidad/Tudai/2017/Programacion3/Boulanger-TPEspecial/datasets/dataset_3000000.csv";
-	final static String pathNew = "C:/Users/USER/Documents/Universidad/Tudai/2017/Programacion3/Boulanger-TPEspecial/datasets/dataset_insert_10000.csv";
-	final static String pathSearch = "C:/Users/USER/Documents/Universidad/Tudai/2017/Programacion3/Boulanger-TPEspecial/datasets/dataset_busqueda_10000.csv";
-	final static String resultSearch = "C:/Users/USER/Documents/Universidad/Tudai/2017/Programacion3/Boulanger-TPEspecial/datasets/salidabusqueda.csv";
-	final static String resultUploading = "C:/Users/USER/Documents/Universidad/Tudai/2017/Programacion3/Boulanger-TPEspecial/datasets/salidaalta.csv";
+	final static String path500k = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/dataset_500000.csv";
+	final static String path1m = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/dataset_1000000.csv";
+	final static String path3m = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/dataset_3000000.csv";
+	final static String pathNew = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/dataset_insert_10000.csv";
+	final static String pathSearch = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/dataset_busqueda_10000.csv";
+	final static String resultSearch = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/salidabusqueda.csv";
+	final static String resultUploading = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/salidaalta.csv";
 
-	public static void main(String[] args) {
+
+	public static void main(String[] args) throws IOException {
 
 		ArrayList<User> load500k = new ArrayList<User>();
 		ArrayList<User> load1m = new ArrayList<User>();
@@ -74,7 +76,7 @@ public class Main {
 	}
 
 	private static void loadUsers(UserArray ua, UserLinkedListLast ulll, UserLinkedListFirst ullf,
-			ArrayList<User> newUsers) {
+			ArrayList<User> newUsers) throws IOException {
 		readUsers(pathNew, newUsers);
 		ullf.addUsers(newUsers);
 		ulll.addUsers(newUsers);
@@ -91,7 +93,7 @@ public class Main {
 		users = csvr.reader(path);
 	}
 
-	private static void saveResult(String path, ArrayList<User> users) {
+	private static void saveResult(String path, ArrayList<User> users) throws IOException {
 		CSVWritter csvw = new CSVWritter();
 		csvw.createWritter(path);
 		csvw.write(users);
