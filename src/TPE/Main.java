@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main {
-	final static String path500k = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/dataset_500000.csv";
+	final static String path500k = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/dataset_24.csv";
 	final static String path1m = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/dataset_1000000.csv";
 	final static String path3m = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/dataset_3000000.csv";
 	final static String pathNew = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/dataset_insert_10000.csv";
@@ -21,8 +21,8 @@ public class Main {
 		ArrayList<User> searchUsers = new ArrayList<User>();
 		ArrayList<User> newUsers = new ArrayList<User>();
 
-		UserLinkedListFirst ullf;
-		UserLinkedListLast ulll;
+		UserLinkedList ullf = new UserLinkedList(true);
+		UserLinkedList ulll = new UserLinkedList(false);
 		UserArray ua;
 		CSVReader csvr = new CSVReader();
 		load500k = csvr.reader(path500k);
@@ -34,10 +34,10 @@ public class Main {
 		searchUsers = csvr.reader(pathSearch);
 		System.out.println("read search");
 		// 500k
-		ullf = new UserLinkedListFirst();
+
 		ullf.addUsers(load500k);
 		System.out.println("add 500 ullf");
-		ulll = new UserLinkedListLast();
+		
 		ulll.addUsers(load500k);
 		System.out.println("add 500 ulll");
 		ua = new UserArray();
@@ -75,7 +75,7 @@ public class Main {
 		System.out.println("termino");
 	}
 
-	private static void loadUsers(UserArray ua, UserLinkedListLast ulll, UserLinkedListFirst ullf,
+	private static void loadUsers(UserArray ua, UserLinkedList ulll, UserLinkedList ullf,
 			ArrayList<User> newUsers) throws IOException {
 		readUsers(pathNew, newUsers);
 		ullf.addUsers(newUsers);
