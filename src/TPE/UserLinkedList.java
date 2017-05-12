@@ -88,7 +88,7 @@ public class UserLinkedList implements IUserList {
 				}
 				Date end = new Date();
 				long result = end.getTime() - init.getTime();
-				saveResult(user, size, result);
+				guardarTiempo(user, size, result);
 			}
 			csvw.createWritter(resultBusqueda);
 			csvw.write(usersQuery);
@@ -98,8 +98,7 @@ public class UserLinkedList implements IUserList {
 		}
 	}
 
-	@Override
-	public void saveResult(User user, int size, long result) {
+	private void guardarTiempo(User user, int size, long result) {
 		if (size <= 500000) {
 			user.setTimeFirst("500k", result);
 		} else if (size <= 1000000) {

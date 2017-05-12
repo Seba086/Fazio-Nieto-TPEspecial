@@ -74,7 +74,7 @@ public class UserArray implements IUserList {
 			} else {
 				size = 3000000;
 			}
-			saveResult(user, size, result);
+			guardarTiempo(user, size, result);
 		}
 		csvw.createWritter(resultBusqueda);
 		try {
@@ -84,8 +84,7 @@ public class UserArray implements IUserList {
 		}
 	}
 
-	@Override
-	public void saveResult(User user, int size, long result) {
+	private void guardarTiempo(User user, int size, long result) {
 		if (size <= 500000) {
 			user.setTimeArray("500k", result);
 		} else if (size <= 1000000) {
