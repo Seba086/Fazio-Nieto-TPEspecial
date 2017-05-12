@@ -44,7 +44,6 @@ public class User {
 	}
 
 	private Integer getId() {
-		// TODO Auto-generated method stub
 		return userId;
 	}
 

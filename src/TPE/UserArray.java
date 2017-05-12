@@ -6,19 +6,21 @@ import java.util.Date;
 
 public class UserArray implements IUserList {
 	private User[] users = new User[10000];
-	protected CSVReader csvr = new CSVReader();
-	protected CSVWritter csvw = new CSVWritter();
-	protected final String resultBusqueda = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/salidabusqueda.csv";
-	protected final String resultAlta = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/salidaalta.csv";
-	protected String pathCargaUsuarios = "";
-	protected int cantidad = 0;
+	private CSVReader csvr = new CSVReader();
+	private CSVWritter csvw = new CSVWritter();
+	private String resultBusqueda = "";
+	private String resultAlta = "";
+	private String pathCargaUsuarios = "";
+	private int cantidad = 0;
 
-	public UserArray(String pathCargaUsuarios) {
+	public UserArray(String pathCargaUsuarios, String resultBusqueda, String resultAlta) {
 		this.pathCargaUsuarios = pathCargaUsuarios;
+		this.resultAlta = resultAlta;
+		this.resultBusqueda = resultBusqueda;
 		cargarUsuarios(this.pathCargaUsuarios);
 	}
 
-	protected void cargarUsuarios(String pathCarga) {
+	private void cargarUsuarios(String pathCarga) {
 		ArrayList<User> usuarios = new ArrayList<User>();
 		usuarios = csvr.reader(pathCarga);
 		int temp = cantidad;
@@ -32,9 +34,7 @@ public class UserArray implements IUserList {
 				cantidad++;
 			
 			}
-		} catch (IndexOutOfBoundsException e) {
-			// TODO Auto-generated catch block
-			
+		} catch (IndexOutOfBoundsException e) {		
 		}
 
 	}
@@ -49,7 +49,7 @@ public class UserArray implements IUserList {
 	}
 
 	@Override
-	public void searchUsers(String pathSearch) {
+	public void buscarUsuarios(String pathSearch) {
 		ArrayList<User> usersQuery = new ArrayList<User>();
 		usersQuery = csvr.reader(pathSearch);
 		for (User user : usersQuery) {
@@ -80,19 +80,17 @@ public class UserArray implements IUserList {
 		try {
 			csvw.write(usersQuery);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public void saveResult(User user, int size, long result) {
-		// TODO Auto-generated method stub
 		if (size <= 500000) {
 			user.setTimeArray("500k", result);
 		} else if (size <= 1000000) {
 			user.setTimeArray("1m", result);
-		} else if (size > 3000000) {
+		} else{
 			user.setTimeArray("3m", result);
 		}
 	}
@@ -115,7 +113,6 @@ public class UserArray implements IUserList {
 
 			csvw.write(usuariosAImprimir);
 		} catch (NullPointerException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

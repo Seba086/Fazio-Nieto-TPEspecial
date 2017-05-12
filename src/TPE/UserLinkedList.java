@@ -5,19 +5,22 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class UserLinkedList implements IUserList {
-	protected User first;
-	protected User last;
-	protected int size = 0;
-	protected boolean insertarInicio = false;
-	protected CSVReader csvr = new CSVReader();
-	protected CSVWritter csvw = new CSVWritter();
-	protected final String resultBusqueda= "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/salidabusqueda.csv";
-	protected final String resultAlta = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/salidaalta.csv";
-	protected String pathCargaUsuarios = "";
+	private User first;
+	private User last;
+	private int size = 0;
+	private boolean insertarInicio = false;
+	private CSVReader csvr = new CSVReader();
+	private CSVWritter csvw = new CSVWritter();
+	private String resultBusqueda= "";
+	private String resultAlta = "";
+	private String pathCargaUsuarios = "";
+	
 
-	public UserLinkedList(boolean insertarAlInicio, String pathCargaUsuarios) {
+	public UserLinkedList(boolean insertarAlInicio, String pathCargaUsuarios, String resultBusqueda, String resultAlta) {
 		this.pathCargaUsuarios = pathCargaUsuarios;
 		this.insertarInicio = insertarAlInicio;
+		this.resultAlta = resultAlta;
+		this.resultBusqueda = resultBusqueda;
 		cargarUsuarios();
 	}
 
@@ -62,7 +65,7 @@ public class UserLinkedList implements IUserList {
 	}
 
 	@Override
-	public void searchUsers(String pathSearch) {
+	public void buscarUsuarios(String pathSearch) {
 		ArrayList<User> usersQuery = new ArrayList<User>();
 		usersQuery = csvr.reader(pathSearch);
 		try {
@@ -91,7 +94,6 @@ public class UserLinkedList implements IUserList {
 			csvw.write(usersQuery);
 
 		} catch (NullPointerException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -102,7 +104,7 @@ public class UserLinkedList implements IUserList {
 			user.setTimeFirst("500k", result);
 		} else if (size <= 1000000) {
 			user.setTimeFirst("1m", result);
-		} else if (size > 3000000) {
+		} else {
 			user.setTimeFirst("3m", result);
 		}
 	}
@@ -131,7 +133,6 @@ public class UserLinkedList implements IUserList {
 		try {
 			csvw.write(this.toArrayList());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

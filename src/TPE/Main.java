@@ -4,79 +4,73 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main {
-	final static String path500k = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/dataset_500000.csv";
-	final static String path1m = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/dataset_24.csv";
-	final static String path3m = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/dataset_3000000.csv";
-	final static String pathAlta = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/dataset_insert_10000.csv";
-	final static String pathBusqueda = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/dataset_busqueda_10000.csv";
-	final static String resultSearch = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/salidabusqueda.csv";
-	final static String resultUploading = "C:/Users/Seba/workspace/Fazio-Nieto-TPEspecial/datasets/salidaalta.csv";
+	// C:\TUDAI-ws\Fazio-Nieto-TPEspecial\datasets
+	final static String path500k = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/dataset_500000.csv";
+	final static String path1m = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/dataset_1000000.csv";
+	final static String path3m = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/dataset_3000000.csv";
+	final static String pathAlta = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/dataset_insert_10000.csv";
+	final static String pathBusqueda = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/dataset_busqueda_10000.csv";
+	final static String resultBusqueda500k_array = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/salidabusqueda500k_array.csv";
+	final static String resultAlta500k_array = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/salidaalta500k_array.csv";
+	final static String resultBusqueda1m_array = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/salidabusqueda1m_array.csv";
+	final static String resultBusqueda3m_array = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/salidabusqueda3m_array.csv";
+	final static String resultAlta1m_array = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/salidaalta1m_array.csv";
+	final static String resultAlta3m_array = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/salidaalta3m_array.csv";
+	final static String resultBusqueda500k_listaInicio = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/salidabusqueda500k_listainicio.csv";
+	final static String resultAlta500k_listaInicio = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/salidaalta500k_listainicio.csv";
+	final static String resultBusqueda1m_listaInicio = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/salidabusqueda1m_listainicio.csv";
+	final static String resultBusqueda3m_listaInicio = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/salidabusqueda3m_listainicio.csv";
+	final static String resultAlta1m_listaInicio = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/salidaalta1m_listainicio.csv";
+	final static String resultAlta3m_listaInicio = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/salidaalta3m_listainicio.csv";
+	final static String resultBusqueda500k_listaFinal = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/salidabusqueda500k_listaFinal.csv";
+	final static String resultAlta500k_listaFinal = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/salidaalta500k_listaFinal.csv";
+	final static String resultBusqueda1m_listaFinal = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/salidabusqueda1m_listaFinal.csv";
+	final static String resultBusqueda3m_listaFinal = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/salidabusqueda3m_listaFinal.csv";
+	final static String resultAlta1m_listaFinal = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/salidaalta1m_listaFinal.csv";
+	final static String resultAlta3m_listaFinal = "C:/TUDAI-ws/Fazio-Nieto-TPEspecial/datasets/salidaalta3m_listaFinal.csv";
 
 	public static void main(String[] args) throws IOException {
-		// UserLinkedList listaPrincipio = new UserLinkedList(true, path500k);
-		// listaPrincipio.searchUsers(pathBusqueda);
-		UserLinkedList listaFinal = new UserLinkedList(true, path500k);
-		// listaFinal.searchUsers(pathBusqueda);
-		listaFinal.altaUsuarios(path1m);
-		// listaPrincipio.altaUsuarios(pathAlta);
-		// UserArray listaArray = new UserArray(path500k);
-		// listaArray.searchUsers(pathBusqueda);
-		// listaArray.altaUsuarios(pathAlta);
+		// 500k
+		UserLinkedList listaPrincipio500k = new UserLinkedList(true, path500k, resultBusqueda500k_listaInicio,resultAlta500k_listaInicio);
+		UserLinkedList listaFinal500k = new UserLinkedList(true, path500k, resultBusqueda500k_listaFinal,resultAlta500k_listaFinal);
+		UserArray listaArray500k = new UserArray(path500k, resultBusqueda500k_array, resultAlta500k_array);
+		// 1m
+		
+		UserLinkedList listaPrincipio1m = new UserLinkedList(true, path1m,resultBusqueda1m_listaInicio,resultAlta1m_listaInicio);
+		UserLinkedList listaFinal1m = new UserLinkedList(true, path500k,resultBusqueda1m_listaFinal ,resultAlta1m_listaFinal); 
+		UserArray listaArray1m = new UserArray(path1m, resultBusqueda1m_array ,resultAlta1m_array); 
+		//3m 
+		UserLinkedList listaPrincipio3m = new UserLinkedList(true, path3m,resultBusqueda3m_listaInicio,resultAlta3m_listaInicio);
+		UserLinkedList listaFinal3m = new UserLinkedList(true, path500k,resultBusqueda3m_listaFinal ,resultAlta3m_listaFinal); 
+		UserArray listaArray3m = new UserArray(path3m, resultBusqueda3m_array ,resultAlta3m_array);
+		 
 
-		/*
-		 * ArrayList<User> load500k = new ArrayList<User>(); ArrayList<User>
-		 * load1m = new ArrayList<User>(); ArrayList<User> load3m = new
-		 * ArrayList<User>(); ArrayList<User> searchUsers = new
-		 * ArrayList<User>(); ArrayList<User> newUsers = new ArrayList<User>();
-		 * 
-		 * UserLinkedList ullf = new UserLinkedList(true); UserLinkedList ulll =
-		 * new UserLinkedList(false); UserArray ua; CSVReader csvr = new
-		 * CSVReader(); load500k = csvr.reader(path500k);
-		 * System.out.println("read 500"); //load1m = csvr.reader(path1m);
-		 * //System.out.println("read 1"); //load3m = csvr.reader(path3m);
-		 * //System.out.println("read 3"); searchUsers =
-		 * csvr.reader(pathSearch); System.out.println("read search"); // 500k
-		 * 
-		 * ullf.addUsers(load500k); System.out.println("add 500 ullf");
-		 * 
-		 * ulll.addUsers(load500k); System.out.println("add 500 ulll"); ua = new
-		 * UserArray(); ua.addUsers(load500k); System.out.println("add 500 ua");
-		 * ullf.searchUsers(searchUsers); System.out.println("search ullf");
-		 * ulll.searchUsers(searchUsers); System.out.println("search ulll");
-		 * ua.searchUsers(searchUsers); System.out.println("search ua"); // 1m
-		 * ullf = new UserLinkedListFirst(); ullf.addUsers(load1m); ulll = new
-		 * UserLinkedListLast(); ulll.addUsers(load1m); ua = new UserArray();
-		 * ua.addUsers(load1m); ullf.searchUsers(searchUsers);
-		 * ulll.searchUsers(searchUsers); ua.searchUsers(searchUsers); // 1m
-		 * ullf = new UserLinkedListFirst(); ullf.addUsers(load3m); ulll = new
-		 * UserLinkedListLast(); ulll.addUsers(load3m); ua = new UserArray();
-		 * ua.addUsers(load3m); ullf.searchUsers(searchUsers);
-		 * ulll.searchUsers(searchUsers); ua.searchUsers(searchUsers);
-		 * CSVWritter csvw = new CSVWritter(); csvw.createWritter(resultSearch);
-		 * csvw.write(searchUsers); System.out.println("termino");
-		 */
-	}
+		// Busqueda y alta usuarios 500k
 
-	/*
-	 * private static void loadUsers(UserArray ua, UserLinkedList ulll,
-	 * UserLinkedList ullf, ArrayList<User> newUsers) throws IOException {
-	 * readUsers(pathNew, newUsers); ullf.addUsers(newUsers);
-	 * ulll.addUsers(newUsers); ua.addUsers(newUsers);
-	 * saveResult(resultUploading, newUsers); }
-	 */
+		listaPrincipio500k.buscarUsuarios(pathBusqueda);
+		listaPrincipio500k.altaUsuarios(pathAlta);
+		listaFinal500k.buscarUsuarios(pathBusqueda);
+		listaFinal500k.altaUsuarios(pathAlta);
+		listaArray500k.buscarUsuarios(pathBusqueda);
+		listaArray500k.altaUsuarios(pathAlta);
 
-	private static void searchUsers() {
+		// Busqueda y alta usuarios 1m
 
-	}
+		listaPrincipio1m.buscarUsuarios(pathBusqueda);
+		listaPrincipio1m.altaUsuarios(pathAlta);
+		listaFinal1m.buscarUsuarios(pathBusqueda);
+		listaFinal1m.altaUsuarios(pathAlta);
+		listaArray1m.buscarUsuarios(pathBusqueda);
+		listaArray1m.altaUsuarios(pathAlta);
+		
+		// Busqueda y alta usuarios 3m
 
-	private static void readUsers(String path, ArrayList<User> users) {
-		CSVReader csvr = new CSVReader();
-		users = csvr.reader(path);
-	}
+		listaPrincipio3m.buscarUsuarios(pathBusqueda);
+		listaPrincipio3m.altaUsuarios(pathAlta);
+		listaFinal3m.buscarUsuarios(pathBusqueda);
+		listaFinal3m.altaUsuarios(pathAlta);
+		listaArray3m.buscarUsuarios(pathBusqueda);
+		listaArray3m.altaUsuarios(pathAlta);
 
-	private static void saveResult(String path, ArrayList<User> users) throws IOException {
-		CSVWritter csvw = new CSVWritter();
-		csvw.createWritter(path);
-		csvw.write(users);
 	}
 }
