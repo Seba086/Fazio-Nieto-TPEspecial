@@ -38,7 +38,7 @@ public class CSVWritter {
 				String contenidoLinea1 = user.getUserId().toString() +";" + user.exists()+ ";" +timeOne + ";" + timeTwo + ";" + timeThree;
 				bw.write(contenidoLinea1);
 				bw.newLine();
-			} catch (IOException ioe) {
+			} catch (IOException | NullPointerException ioe) {
 				ioe.printStackTrace();
 			}
 		}
