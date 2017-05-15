@@ -35,7 +35,7 @@ public class Main {
 		ListaVinculadaSimple listaFinal500k = new ListaVinculadaSimple(true, path500k, resultBusqueda500k_listaFinal,resultAlta500k_listaFinal);
 		ListaArray listaArray500k = new ListaArray(path500k, resultBusqueda500k_array, resultAlta500k_array);
 		// 1m
-/*		
+		
 		ListaVinculadaSimple listaPrincipio1m = new ListaVinculadaSimple(true, path1m,resultBusqueda1m_listaInicio,resultAlta1m_listaInicio);
 		ListaVinculadaSimple listaFinal1m = new ListaVinculadaSimple(true, path500k,resultBusqueda1m_listaFinal ,resultAlta1m_listaFinal); 
 		ListaArray listaArray1m = new ListaArray(path1m, resultBusqueda1m_array ,resultAlta1m_array); 
@@ -44,7 +44,7 @@ public class Main {
 		ListaVinculadaSimple listaFinal3m = new ListaVinculadaSimple(true, path500k,resultBusqueda3m_listaFinal ,resultAlta3m_listaFinal); 
 		ListaArray listaArray3m = new ListaArray(path3m, resultBusqueda3m_array ,resultAlta3m_array);
 		 
-*/
+
 		// Busqueda y alta usuarios 500k
 
 		listaPrincipio500k.buscarUsuarios(pathBusqueda);
@@ -54,7 +54,7 @@ public class Main {
 		listaArray500k.buscarUsuarios(pathBusqueda);
 		listaArray500k.altaUsuarios(pathAlta);
 
-/*		// Busqueda y alta usuarios 1m
+		// Busqueda y alta usuarios 1m
 
 		listaPrincipio1m.buscarUsuarios(pathBusqueda);
 		listaPrincipio1m.altaUsuarios(pathAlta);
@@ -70,7 +70,7 @@ public class Main {
 		listaFinal3m.buscarUsuarios(pathBusqueda);
 		listaFinal3m.altaUsuarios(pathAlta);
 		listaArray3m.buscarUsuarios(pathBusqueda);
-		listaArray3m.altaUsuarios(pathAlta);*/
+		listaArray3m.altaUsuarios(pathAlta);
 
 	}
 }
