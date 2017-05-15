@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class UserArray implements IUserList {
-	private User[] users = new User[10000];
+public class ListaArray implements Lista {
+	private Usuario[] users = new Usuario[10000];
 	private CSVReader csvr = new CSVReader();
 	private CSVWritter csvw = new CSVWritter();
 	private String resultBusqueda = "";
@@ -13,15 +13,15 @@ public class UserArray implements IUserList {
 	private String pathCargaUsuarios = "";
 	private int cantidad = 0;
 
-	public UserArray(String pathCargaUsuarios, String resultBusqueda, String resultAlta) {
+	public ListaArray(String pathCargaUsuarios, String resultBusqueda, String resultAlta) {
 		this.pathCargaUsuarios = pathCargaUsuarios;
 		this.resultAlta = resultAlta;
 		this.resultBusqueda = resultBusqueda;
-		cargarUsuarios(this.pathCargaUsuarios);
+		cargarUsuarios(this.pathCargaUsuarios, false);
 	}
 
-	private void cargarUsuarios(String pathCarga) {
-		ArrayList<User> usuarios = new ArrayList<User>();
+	private void cargarUsuarios(String pathCarga, boolean imprimir) {
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 		usuarios = csvr.reader(pathCarga);
 		int temp = cantidad;
 		try {
@@ -36,12 +36,20 @@ public class UserArray implements IUserList {
 			}
 		} catch (IndexOutOfBoundsException e) {		
 		}
-
+		if (imprimir){
+			csvw.createWritter(resultAlta);
+			try {
+				csvw.write(usuarios);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	private void duplicateArrayLength() {
 		System.out.println("El tamaño actual del arreglo está por ser: " + this.users.length * 2);
-		User[] usersTemp = new User[this.users.length * 2];
+		Usuario[] usersTemp = new Usuario[this.users.length * 2];
 		for (int i = 0; i < this.users.length; i++) {
 			usersTemp[i] = this.users[i];
 		}
@@ -50,9 +58,9 @@ public class UserArray implements IUserList {
 
 	@Override
 	public void buscarUsuarios(String pathSearch) {
-		ArrayList<User> usersQuery = new ArrayList<User>();
+		ArrayList<Usuario> usersQuery = new ArrayList<Usuario>();
 		usersQuery = csvr.reader(pathSearch);
-		for (User user : usersQuery) {
+		for (Usuario user : usersQuery) {
 			user.setExists(false);
 			boolean found = false;
 			int i = 0;
@@ -84,7 +92,7 @@ public class UserArray implements IUserList {
 		}
 	}
 
-	private void guardarTiempo(User user, int size, long result) {
+	private void guardarTiempo(Usuario user, int size, long result) {
 		if (size <= 500000) {
 			user.setTimeArray("500k", result);
 		} else if (size <= 1000000) {
@@ -96,23 +104,19 @@ public class UserArray implements IUserList {
 
 	@Override
 	public void altaUsuarios(String pathAlta) {
-		cargarUsuarios(pathAlta);
-		CSVWritter csvw = new CSVWritter();
+		cargarUsuarios(pathAlta, true);
 		
-		csvw.createWritter(resultAlta);
-		ArrayList<User> usuariosAImprimir = new ArrayList<User>();
-		for (User usuario : users) {
+	
+		
+		
+		ArrayList<Usuario> usuariosAImprimir = new ArrayList<Usuario>();
+		for (Usuario usuario : users) {
 			if (usuario != null) {
 				usuariosAImprimir.add(usuario);
 			}
 
 		}
 
-		try {
-
-			csvw.write(usuariosAImprimir);
-		} catch (NullPointerException | IOException e) {
-			e.printStackTrace();
-		}
+		
 	}
 }

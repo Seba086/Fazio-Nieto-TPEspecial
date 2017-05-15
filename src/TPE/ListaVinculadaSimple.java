@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class UserLinkedList implements IUserList {
-	private User first;
-	private User last;
+public class ListaVinculadaSimple implements Lista {
+	private Usuario first;
+	private Usuario last;
 	private int size = 0;
 	private boolean insertarInicio = false;
 	private CSVReader csvr = new CSVReader();
@@ -16,7 +16,7 @@ public class UserLinkedList implements IUserList {
 	private String pathCargaUsuarios = "";
 	
 
-	public UserLinkedList(boolean insertarAlInicio, String pathCargaUsuarios, String resultBusqueda, String resultAlta) {
+	public ListaVinculadaSimple(boolean insertarAlInicio, String pathCargaUsuarios, String resultBusqueda, String resultAlta) {
 		this.pathCargaUsuarios = pathCargaUsuarios;
 		this.insertarInicio = insertarAlInicio;
 		this.resultAlta = resultAlta;
@@ -24,7 +24,7 @@ public class UserLinkedList implements IUserList {
 		cargarUsuarios();
 	}
 
-	public void insertarUsuario(User user) {
+	public void insertarUsuario(Usuario user) {
 		if (this.insertarInicio) {
 			insertarUsuarioInicio(user);
 		} else {
@@ -33,13 +33,13 @@ public class UserLinkedList implements IUserList {
 
 	};
 
-	private void insertarUsuarioInicio(User user) {
+	private void insertarUsuarioInicio(Usuario user) {
 		user.setNext(first);
 		this.first = user;
 		this.size++;
 	}
 
-	private void insertarUsuarioFinal(User user) {
+	private void insertarUsuarioFinal(Usuario user) {
 		if (this.first == null) {
 			this.first = user;
 			this.last = first;
@@ -51,10 +51,10 @@ public class UserLinkedList implements IUserList {
 	}
 
 	private void cargarUsuarios() {
-		ArrayList<User> usuarios = new ArrayList<User>();
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 		usuarios = csvr.reader(pathCargaUsuarios);
 		Date init = new Date();
-		for (User user : usuarios) {
+		for (Usuario user : usuarios) {
 			insertarUsuarioFinal(user);
 			Date end = new Date();
 			long result = end.getTime() - init.getTime();
@@ -66,13 +66,13 @@ public class UserLinkedList implements IUserList {
 
 	@Override
 	public void buscarUsuarios(String pathSearch) {
-		ArrayList<User> usersQuery = new ArrayList<User>();
+		ArrayList<Usuario> usersQuery = new ArrayList<Usuario>();
 		usersQuery = csvr.reader(pathSearch);
 		try {
-			for (User user : usersQuery) {
+			for (Usuario user : usersQuery) {
 				user.setExists(false);
 				boolean found = false;
-				User userTemp = first;
+				Usuario userTemp = first;
 				Date init = new Date();
 				int i = 0;
 				while (!found && (i < size)) {
@@ -98,7 +98,7 @@ public class UserLinkedList implements IUserList {
 		}
 	}
 
-	private void guardarTiempo(User user, int size, long result) {
+	private void guardarTiempo(Usuario user, int size, long result) {
 		if (size <= 500000) {
 			user.setTimeFirst("500k", result);
 		} else if (size <= 1000000) {
@@ -107,9 +107,9 @@ public class UserLinkedList implements IUserList {
 			user.setTimeFirst("3m", result);
 		}
 	}
-	private ArrayList<User> toArrayList(){
-		ArrayList<User> usuarios = new ArrayList<User>();
-		User usuario = this.first;
+	private ArrayList<Usuario> toArrayList(){
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		Usuario usuario = this.first;
 		while(usuario.hasNext()) {
 			usuarios.add(usuario);
 			usuario = usuario.getNext();
@@ -118,10 +118,10 @@ public class UserLinkedList implements IUserList {
 	}
 	@Override
 	public void altaUsuarios(String pathAlta) {
-		ArrayList<User> usersAlta = new ArrayList<User>();
+		ArrayList<Usuario> usersAlta = new ArrayList<Usuario>();
 		usersAlta = csvr.reader(pathAlta);
 		try {
-			for (User user : usersAlta) {
+			for (Usuario user : usersAlta) {
 				insertarUsuario(user);
 			}
 
@@ -130,7 +130,7 @@ public class UserLinkedList implements IUserList {
 		}
 		csvw.createWritter(resultAlta);
 		try {
-			csvw.write(this.toArrayList());
+			csvw.write(usersAlta);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

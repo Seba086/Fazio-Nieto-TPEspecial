@@ -16,8 +16,8 @@ import java.util.ArrayList;
  */
 public class CSVReader {
 
-    public ArrayList<User> reader(String path)  {
-    	ArrayList<User> users = new ArrayList<User>();
+    public ArrayList<Usuario> reader(String path)  {
+    	ArrayList<Usuario> users = new ArrayList<Usuario>();
     	String csvFile = path;
         String line = "";
         String csvSplitBy = ";";
@@ -26,7 +26,7 @@ public class CSVReader {
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             while ((line = br.readLine()) != null) {
             	if(numLine > 0){
-            		User user = new User();
+            		Usuario user = new Usuario();
                     String[] items = line.split(csvSplitBy);
                     user.setUserId(items[0].toString());
                     for(int i=1; i < items.length-1; i++){

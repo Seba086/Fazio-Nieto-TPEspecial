@@ -24,13 +24,13 @@ public class CSVWritter {
 		}
 	}
 
-	public void write(ArrayList<User> users) throws IOException {
+	public void write(ArrayList<Usuario> users) throws IOException {
 		String k500 = "500k";
 		String m1 = "1m";
 		String m3 = "3m";
 		bw.write("id_usuario;encontrado;tiempo");
 		bw.newLine();
-		for (User user : users) {
+		for (Usuario user : users) {
 			try {
 				int timeOne = (int) (user.getTimeArray(k500)+user.getTimeArray(m1)+user.getTimeArray(m3));
 				int timeTwo = (int) (user.getTimeFirst(k500)+ user.getTimeFirst(m1) + user.getTimeFirst(m3));

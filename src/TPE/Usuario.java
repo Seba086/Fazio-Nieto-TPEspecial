@@ -2,8 +2,8 @@ package TPE;
 
 import java.util.ArrayList;
 
-public class User {
-	private User next;
+public class Usuario {
+	private Usuario next;
 	private Integer userId;
 	private ArrayList<String> userInterest = new ArrayList<String>();
 	private boolean exists = false;
@@ -39,7 +39,7 @@ public class User {
 		}
 	}
 
-	public int compareTo(User user) {
+	public int compareTo(Usuario user) {
 		return this.userId-user.getId();
 	}
 
@@ -47,11 +47,11 @@ public class User {
 		return userId;
 	}
 
-	public void setNext(User user) {
+	public void setNext(Usuario user) {
 		this.next = user;
 	}
 
-	public User getNext() {
+	public Usuario getNext() {
 		return this.next;
 	}
 	

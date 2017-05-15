@@ -31,20 +31,20 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		// 500k
-		UserLinkedList listaPrincipio500k = new UserLinkedList(true, path500k, resultBusqueda500k_listaInicio,resultAlta500k_listaInicio);
-		UserLinkedList listaFinal500k = new UserLinkedList(true, path500k, resultBusqueda500k_listaFinal,resultAlta500k_listaFinal);
-		UserArray listaArray500k = new UserArray(path500k, resultBusqueda500k_array, resultAlta500k_array);
+		ListaVinculadaSimple listaPrincipio500k = new ListaVinculadaSimple(true, path500k, resultBusqueda500k_listaInicio,resultAlta500k_listaInicio);
+		ListaVinculadaSimple listaFinal500k = new ListaVinculadaSimple(true, path500k, resultBusqueda500k_listaFinal,resultAlta500k_listaFinal);
+		ListaArray listaArray500k = new ListaArray(path500k, resultBusqueda500k_array, resultAlta500k_array);
 		// 1m
-		
-		UserLinkedList listaPrincipio1m = new UserLinkedList(true, path1m,resultBusqueda1m_listaInicio,resultAlta1m_listaInicio);
-		UserLinkedList listaFinal1m = new UserLinkedList(true, path500k,resultBusqueda1m_listaFinal ,resultAlta1m_listaFinal); 
-		UserArray listaArray1m = new UserArray(path1m, resultBusqueda1m_array ,resultAlta1m_array); 
+/*		
+		ListaVinculadaSimple listaPrincipio1m = new ListaVinculadaSimple(true, path1m,resultBusqueda1m_listaInicio,resultAlta1m_listaInicio);
+		ListaVinculadaSimple listaFinal1m = new ListaVinculadaSimple(true, path500k,resultBusqueda1m_listaFinal ,resultAlta1m_listaFinal); 
+		ListaArray listaArray1m = new ListaArray(path1m, resultBusqueda1m_array ,resultAlta1m_array); 
 		//3m 
-		UserLinkedList listaPrincipio3m = new UserLinkedList(true, path3m,resultBusqueda3m_listaInicio,resultAlta3m_listaInicio);
-		UserLinkedList listaFinal3m = new UserLinkedList(true, path500k,resultBusqueda3m_listaFinal ,resultAlta3m_listaFinal); 
-		UserArray listaArray3m = new UserArray(path3m, resultBusqueda3m_array ,resultAlta3m_array);
+		ListaVinculadaSimple listaPrincipio3m = new ListaVinculadaSimple(true, path3m,resultBusqueda3m_listaInicio,resultAlta3m_listaInicio);
+		ListaVinculadaSimple listaFinal3m = new ListaVinculadaSimple(true, path500k,resultBusqueda3m_listaFinal ,resultAlta3m_listaFinal); 
+		ListaArray listaArray3m = new ListaArray(path3m, resultBusqueda3m_array ,resultAlta3m_array);
 		 
-
+*/
 		// Busqueda y alta usuarios 500k
 
 		listaPrincipio500k.buscarUsuarios(pathBusqueda);
@@ -54,7 +54,7 @@ public class Main {
 		listaArray500k.buscarUsuarios(pathBusqueda);
 		listaArray500k.altaUsuarios(pathAlta);
 
-		// Busqueda y alta usuarios 1m
+/*		// Busqueda y alta usuarios 1m
 
 		listaPrincipio1m.buscarUsuarios(pathBusqueda);
 		listaPrincipio1m.altaUsuarios(pathAlta);
@@ -70,7 +70,7 @@ public class Main {
 		listaFinal3m.buscarUsuarios(pathBusqueda);
 		listaFinal3m.altaUsuarios(pathAlta);
 		listaArray3m.buscarUsuarios(pathBusqueda);
-		listaArray3m.altaUsuarios(pathAlta);
+		listaArray3m.altaUsuarios(pathAlta);*/
 
 	}
 }

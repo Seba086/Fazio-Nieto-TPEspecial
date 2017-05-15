@@ -2,7 +2,7 @@ package TPE;
 
 import java.util.ArrayList;
 
-public interface IUserList {
+public interface Lista {
 	
 	
 	public void buscarUsuarios(String pathSearch);
